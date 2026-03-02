@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ScanConfiguration>
+  <ScanInfo>
+    <ScanName>SharedLab共享实验室平台安全扫描</ScanName>
+    <ScanType>WebApplication</ScanType>
+    <CreateDate>2026-01-08</CreateDate>
+    <Description>对SharedLab共享实验室平台进行全面的安全漏洞扫描，包括SQL注入、XSS、CSRF等常见Web安全漏洞</Description>
+  </ScanInfo>
+  
+  <TargetConfiguration>
+    <StartingURL>http://localhost:8080</StartingURL>
+    <ApplicationURL>http://localhost:8080/api</ApplicationURL>
+    <LoginURL>http://localhost:8080/api/auth/login</LoginURL>
+    
+    <Credentials>
+      <Username>admin</Username>
+      <Password>123456</Password>
+      <PasswordField>password</PasswordField>
+      <UsernameField>username</UsernameField>
+    </Credentials>
+    
+    <AdditionalURLs>
+      <URL>http://localhost:8080/api/devices</URL>
+      <URL>http://localhost:8080/api/bookings</URL>
+      <URL>http://localhost:8080/api/tickets</URL>
+      <URL>http://localhost:8080/api/users</URL>
+      <URL>http://localhost:8080/api/device-categories</URL>
+    </AdditionalURLs>
+    
+    <IncludedPaths>
+      <Path>/api/*</Path>
+      <Path>/api/auth/*</Path>
+      <Path>/api/devices/*</Path>
+      <Path>/api/bookings/*</Path>
+      <Path>/api/tickets/*</Path>
+      <Path>/api/users/*</Path>
+      <Path>/api/device-categories/*</Path>
+    </IncludedPaths>
+    
+    <ExcludedPaths>
+      <Path>/api/auth/logout</Path>
+    </ExcludedPaths>
+  </TargetConfiguration>
+  
+  <TestPolicy>
+    <PolicyName>Default</PolicyName>
+    <TestTypes>
+      <Test enabled="true" severity="High">
+        <Name>SQL Injection</Name>
+        <Description>检测SQL注入漏洞</Description>
+        <Category>Injection</Category>
+      </Test>
+      <Test enabled="true" severity="High">
+        <Name>Cross-Site Scripting (XSS)</Name>
+        <Description>检测跨站脚本攻击漏洞</Description>
+        <Category>XSS</Category>
+      </Test>
+      <Test enabled="true" severity="High">
+        <Name>Authentication Bypass</Name>
+        <Description>检测身份验证绕过漏洞</Description>
+        <Category>Authentication</Category>
+      </Test>
+      <Test enabled="true" severity="Medium">
+        <Name>Cross-Site Request Forgery (CSRF)</Name>
+        <Description>检测跨站请求伪造漏洞</Description>
+        <Category>CSRF</Category>
+      </Test>
+      <Test enabled="true" severity="Medium">
+        <Name>Session Management Issues</Name>
+        <Description>检测会话管理问题</Description>
+        <Category>Session</Category>
+      </Test>
+      <Test enabled="true" severity="High">
+        <Name>Insecure Direct Object References</Name>
+        <Description>检测不安全的直接对象引用</Description>
+        <Category>Authorization</Category>
+      </Test>
+      <Test enabled="true" severity="Medium">
+        <Name>Security Misconfiguration</Name>
+        <Description>检测安全配置错误</Description>
+        <Category>Configuration</Category>
+      </Test>
+      <Test enabled="true" severity="High">
+        <Name>Sensitive Data Exposure</Name>
+        <Description>检测敏感数据暴露</Description>
+        <Category>DataProtection</Category>
+      </Test>
+      <Test enabled="true" severity="Medium">
+        <Name>Missing Function Level Access Control</Name>
+        <Description>检测缺少功能级访问控制</Description>
+        <Category>Authorization</Category>
+      </Test>
+      <Test enabled="true" severity="Low">
+        <Name>Using Components with Known Vulnerabilities</Name>
+        <Description>检测使用已知漏洞的组件</Description>
+        <Category>Dependencies</Category>
+      </Test>
+      <Test enabled="true" severity="Medium">
+        <Name>Unvalidated Redirects and Forwards</Name>
+        <Description>检测未验证的重定向和转发</Description>
+        <Category>Redirect</Category>
+      </Test>
+      <Test enabled="true" severity="High">
+        <Name>Command Injection</Name>
+        <Description>检测命令注入漏洞</Description>
+        <Category>Injection</Category>
+      </Test>
+      <Test enabled="true" severity="High">
+        <Name>Path Traversal</Name>
+        <Description>检测路径遍历漏洞</Description>
+        <Category>PathTraversal</Category>
+      </Test>
+      <Test enabled="true" severity="Medium">
+        <Name>Weak Password Policy</Name>
+        <Description>检测弱密码策略</Description>
+        <Category>Authentication</Category>
+      </Test>
+      <Test enabled="true" severity="Low">
+        <Name>Information Disclosure</Name>
+        <Description>检测信息泄露</Description>
+        <Category>InformationDisclosure</Category>
+      </Test>
+    </TestTypes>
+  </TestPolicy>
+  
+  <ScanOptions>
+    <MaxScanTime>120</MaxScanTime>
+    <ThreadCount>5</ThreadCount>
+    <ScanDepth>10</ScanDepth>
+    <MaxPagesPerSession>1000</MaxPagesPerSession>
+    <RequestDelay>0</RequestDelay>
+    <FollowRedirects>true</FollowRedirects>
+    <ScanCookies>true</ScanCookies>
+    <ScanHeaders>true</ScanHeaders>
+    <ScanQueryParameters>true</ScanQueryParameters>
+    <ScanPOSTData>true</ScanPOSTData>
+    <ScanJSONData>true</ScanJSONData>
+  </ScanOptions>
+  
+  <CustomHeaders>
+    <Header>
+      <Name>Content-Type</Name>
+      <Value>application/json</Value>
+    </Header>
+    <Header>
+      <Name>Accept</Name>
+      <Value>application/json</Value>
+    </Header>
+  </CustomHeaders>
+  
+  <ReportConfiguration>
+    <ReportFormat>HTML</ReportFormat>
+    <ReportFormat>PDF</ReportFormat>
+    <ReportFormat>XML</ReportFormat>
+    <IncludeSeverity>High,Medium,Low</IncludeSeverity>
+    <OutputDirectory>C:\SharedLab\SharedLab_Test_Submission\安全测试\Reports</OutputDirectory>
+    <ReportName>SharedLab_Security_Report</ReportName>
+  </ReportConfiguration>
+  
+  <TestScenarios>
+    <Scenario name="登录测试">
+      <Step order="1">
+        <Action>POST</Action>
+        <URL>http://localhost:8080/api/auth/login</URL>
+        <PostData>{"username":"admin","password":"123456"}</PostData>
+        <ExpectedResponse>200</ExpectedResponse>
+      </Step>
+    </Scenario>
+    
+    <Scenario name="SQL注入测试-登录">
+      <Step order="1">
+        <Action>POST</Action>
+        <URL>http://localhost:8080/api/auth/login</URL>
+        <PostData>{"username":"admin' OR '1'='1","password":"' OR '1'='1"}</PostData>
+        <ExpectedResponse>401</ExpectedResponse>
+      </Step>
+    </Scenario>
+    
+    <Scenario name="XSS测试-设备名称">
+      <Step order="1">
+        <Action>POST</Action>
+        <URL>http://localhost:8080/api/devices</URL>
+        <PostData>{"name":"&lt;script&gt;alert('XSS')&lt;/script&gt;","categoryId":1,"description":"test","location":"lab","status":"AVAILABLE"}</PostData>
+        <ExpectedResponse>400</ExpectedResponse>
+      </Step>
+    </Scenario>
+    
+    <Scenario name="权限提升测试">
+      <Step order="1">
+        <Action>POST</Action>
+        <URL>http://localhost:8080/api/auth/login</URL>
+        <PostData>{"username":"student1","password":"123456"}</PostData>
+        <ExpectedResponse>200</ExpectedResponse>
+      </Step>
+      <Step order="2">
+        <Action>GET</Action>
+        <URL>http://localhost:8080/api/users</URL>
+        <ExpectedResponse>403</ExpectedResponse>
+      </Step>
+    </Scenario>
+    
+    <Scenario name="未授权访问测试">
+      <Step order="1">
+        <Action>GET</Action>
+        <URL>http://localhost:8080/api/tickets</URL>
+        <ExpectedResponse>403</ExpectedResponse>
+      </Step>
+    </Scenario>
+  </TestScenarios>
+  
+  <Notes>
+    <Note>
+      <Title>测试前准备</Title>
+      <Content>
+        1. 确保后端服务运行在 http://localhost:8080
+        2. 确保数据库已初始化并包含测试数据
+        3. 建议在测试环境而非生产环境执行扫描
+        4. 扫描可能需要1-2小时完成
+      </Content>
+    </Note>
+    <Note>
+      <Title>重点测试项</Title>
+      <Content>
+        1. SQL注入：重点测试登录、查询、搜索功能
+        2. XSS：重点测试表单输入字段（设备名称、报修内容等）
+        3. 权限验证：测试学生角色是否能访问管理员功能
+        4. 会话管理：测试JWT token的过期和刷新机制
+        5. 敏感数据：检查密码是否加密存储，日志中是否包含敏感信息
+      </Content>
+    </Note>
+    <Note>
+      <Title>预期结果</Title>
+      <Content>
+        - High级别漏洞：0个（必须修复）
+        - Medium级别漏洞：&lt;5个（建议修复）
+        - Low级别漏洞：&lt;10个（可选修复）
+      </Content>
+    </Note>
+  </Notes>
+</ScanConfiguration>
